@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyline Cross Country Team</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/YOUR_ID.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to Main Content</a>
+    
+    <nav>
+        <ul>
+            <li><a href="index.html" aria-current="page">Home Page</a></li>
+            <li><a href="mens.html">Men's Team</a></li>
+            <li><a href="womens.html">Women's Team</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Skyline Cross Country</h1>
+        <p>Home of the Eagles</p>
+    </header>
+
+    <main id="main">
+        <section class="team-section fade-in">
+            <h2>Men's Team</h2>
+            <div class="athlete-grid">
+                <!-- Athletes will be added dynamically via JavaScript -->
+            </div>
+        </section>
+
+        <section class="team-section fade-in">
+            <h2>Women's Team</h2>
+            <div class="athlete-grid">
+                <!-- Athletes will be added dynamically via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>
+            Skyline High School<br>
+            <address>
+                2552 North Maple Road<br>
+                Ann Arbor, MI 48103
+            </address>
+        </p>
+        <div class="social-links">
+            <a href="https://sites.google.com/aaps.k12.mi.us/skylinecrosscountry2021/home" class="footer-link">XC Skyline Page</a>
+            <a href="https://www.instagram.com/a2skylinexc/" class="social-icon" aria-label="Follow us on Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // Function to load athlete data and create cards
+        async function loadAthletes() {
+            try {
+                // Load men's team
+                const mensResponse = await fetch('mens_team/');
+                const mensText = await mensResponse.text();
+                const mensParser = new DOMParser();
+                const mensDoc = mensParser.parseFromString(mensText, 'text/html');
+                const mensFiles = Array.from(mensDoc.querySelectorAll('a'))
+                    .filter(a => a.href.endsWith('.html'))
+                    .map(a => a.href);
+
+                // Load women's team
+                const womensResponse = await fetch('womens_team/');
+                const womensText = await womensResponse.text();
+                const womensParser = new DOMParser();
+                const womensDoc = womensParser.parseFromString(womensText, 'text/html');
+                const womensFiles = Array.from(womensDoc.querySelectorAll('a'))
+                    .filter(a => a.href.endsWith('.html'))
+                    .map(a => a.href);
+
+                // Create athlete cards
+                createAthleteCards(mensFiles, document.querySelector('.team-section:first-of-type .athlete-grid'));
+                createAthleteCards(womensFiles, document.querySelector('.team-section:last-of-type .athlete-grid'));
+            } catch (error) {
+                console.error('Error loading athletes:', error);
+            }
+        }
+
+        // Function to create athlete cards
+        function createAthleteCards(files, container) {
+            files.forEach(file => {
+                const athleteName = file.split('/').pop().replace('.html', '').replace(/_/g, ' ');
+                const card = document.createElement('div');
+                card.className = 'athlete-card fade-in';
+                card.innerHTML = `
+                    <h3>${athleteName}</h3>
+                    <a href="${file}" class="athlete-link">View Profile</a>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Load athletes when the page loads
+        document.addEventListener('DOMContentLoaded', loadAthletes);
+    </script>
+</body>
+</html>
