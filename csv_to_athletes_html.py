@@ -159,7 +159,72 @@ def gen_athlete_page(data, outfile):
    with open(outfile, 'w') as output:
       output.write(html_content)
 
+def gen_index_page(mens_athletes, womens_athletes):
+    html_content = f'''<!DOCTYPE html>
+   <html lang="en">
+   <head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Skyline Cross Country Team</title>
+   <link rel="stylesheet" href="css/reset.css">
+   <link rel="stylesheet" href="css/style.css">
+   </head>
+   <body>
+   <nav role="navigation" aria-label="Main Navigation">
+      <ul>
+         <li><a href="index.html">Home Page</a></li>
+         <li><a href="mens.html">Men's Team</a></li>
+         <li><a href="womens.html">Women's Team</a></li>
+      </ul>
+   </nav>
+   <header>
+      <h1>Skyline Cross Country Team</h1>
+   </header>
+   <main>
+      <section>
+         <h2>Men's Team Athletes</h2>
+         <ul>
+   '''
 
+    for athlete_data in mens_athletes:
+        athlete_name = athlete_data["name"]
+        athlete_id = athlete_data["athlete_id"]
+        athlete_html = f"mens_team/{athlete_name}{athlete_id}.html"
+        html_content += f'        <li><a href="{athlete_html}">{athlete_name}</a></li>\n'
+
+    html_content += '''      </ul>
+    </section>
+    <section>
+      <h2>Women's Team Athletes</h2>
+      <ul>
+'''
+
+    for athlete_data in womens_athletes:
+        athlete_name = athlete_data["name"]
+        athlete_id = athlete_data["athlete_id"]
+        athlete_html = f"womens_team/{athlete_name}{athlete_id}.html"
+        html_content += f'        <li><a href="{athlete_html}">{athlete_name}</a></li>\n'
+
+    html_content += '''      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>
+    Skyline High School<br>
+    <address>
+    2552 North Maple Road<br>
+    Ann Arbor, MI 48103<br><br>
+    <a href="https://sites.google.com/aaps.k12.mi.us/skylinecrosscountry2021/home">XC Skyline Page</a><br>
+    Follow us on Instagram <a href="https://www.instagram.com/a2skylinexc/"><i class="fa-brands fa-instagram" aria-label="Instagram"></i></a>
+    </address>
+    </p>
+  </footer>
+</body>
+</html>
+'''
+
+    with open('index.html', 'w') as output:
+        output.write(html_content)
 def main():
 
    import os
@@ -172,13 +237,15 @@ def main():
 
    # Extract just the file names (without the full path)
    csv_file_names = [os.path.basename(file) for file in csv_files]
-
+   mens_data = []
+   womens_data = []
    # Output the list of CSV file names
    print(csv_file_names)
    for file in csv_file_names:
 
       # read data from file
       athlete_data = process_athlete_data("mens_team/"+file)
+      mens_data.append(athlete_data)
       # using data to generate templated athlete page
       gen_athlete_page(athlete_data, "mens_team/"+file.replace(".csv",".html"))
 
@@ -202,6 +269,7 @@ def main():
 
       # read data from file
       athlete_data = process_athlete_data("womens_team/"+file)
+      womens_data.append(athlete_data)
       # using data to generate templated athlete page
       gen_athlete_page(athlete_data, "womens_team/"+file.replace(".csv",".html"))
 
@@ -209,6 +277,8 @@ def main():
       # athlete_data2 = process_athlete_data(filename2)
       # using data to generate templated athlete page
       # gen_athlete_page(athlete_data2, "enshu_kuan.html")
-
+   
+   gen_index_page(mens_athletes=mens_data, womens_athletes=womens_data)
+      
 if __name__ == '__main__':
     main()
