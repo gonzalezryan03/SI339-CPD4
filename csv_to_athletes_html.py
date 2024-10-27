@@ -41,123 +41,109 @@ def process_athlete_data(file_path):
    }    
 
 def gen_athlete_page(data, outfile):
-   # template 
-   # Start building the HTML structure
-   html_content = f'''<!DOCTYPE html>
-   <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-       <!-- Get your own FontAwesome ID -->
-       <script src="https://kit.fontawesome.com/YOUR_ID.js" crossorigin="anonymous"></script>
+    # Start building the HTML structure
+    html_content = f'''<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Get your own FontAwesome ID -->
+  <script src="https://kit.fontawesome.com/YOUR_ID.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../css/reset.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>{data["name"]}</title>
+</head>
+<body>
+  <a href="#main">Skip to Main Content</a>
+  <nav role="navigation" aria-label="Main Navigation">
+    <ul>
+      <li><a href="../index.html">Home Page</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>{data["name"]}</h1>
+    <img src="../images/profiles/{data["athlete_id"]}.jpg" alt="Headshot of {data["name"]}" width="200"> 
+  </header>
+  <main id="main">
+    <section id="athlete-sr-table">
+      <h2>Seasonal Records (SR) per Year</h2>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Season Record (SR)</th>
+          </tr>
+        </thead>
+        <tbody>
+'''
 
+    for sr in data["season_records"]:
+        sr_row = f'''
+          <tr>
+            <td data-label="Year">{sr["year"]}</td>
+            <td data-label="Season Record (SR)">{sr["sr"]}</td>
+          </tr>
+        '''
+        html_content += sr_row
 
-      <link rel = "stylesheet" href = "css/reset.css">
-      <link rel = "stylesheet" href = "css/style.css">
-      
+    html_content += '''
+        </tbody>
+      </table>
+    </section>
+    <section id="athlete-result-table">
+      <h2>Race Results</h2>
+      <table id="athlete-table">
+        <thead>
+          <tr>
+            <th scope="col">Race</th>
+            <th scope="col">Athlete Time</th>
+            <th scope="col">Athlete Place</th>
+            <th scope="col">Race Comments</th>
+          </tr>
+        </thead>
+        <tbody>
+'''
 
-      <title>{data["name"]}</title>
-   </head>
-   <body>
-   <a href = "#main">Skip to Main Content</a>
-   <nav>
-     <ul>
-        <li><a href="index.html">Home Page</a></li>
-        <li><a href="mens.html">Men's Team</a></li>
-        <li><a href="womens.html">Women's Team</a></li>
-     </ul>
-   </nav>
-   <header>
-      <!--Athlete would input headshot-->
-       <h1>{data["name"]}</h1>
-      <img src="../images/profiles/{data["athlete_id"]}.jpg" alt="Athlete headshot" width="200"> 
-   </header>
-   <main id = "main">
-      <section id= "athlete-sr-table">
-         <h2>Athlete's Seasonal Records (SR) per Year</h2>
-            <table>
-                  <thead>
-                     <tr>
-                        <th> Year </th>
-                        <th> Season Record (SR)</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                  '''
-   
-   for sr in data["season_records"]:
-      sr_row = f'''
-                     <tr>
-                        <td>{sr["year"]}</td>
-                        <td>{sr["sr"]}</td>
-                     </tr>                  
-               '''
-      html_content += sr_row
+    # Add each race as a row into the race table 
+    for race in data["race_results"]:
+        race_row = f'''
+          <tr class="result-row">
+            <td data-label="Race">
+              <a href="{race["url"]}">{race["meet"]}</a>
+            </td>
+            <td data-label="Athlete Time">{race["time"]}</td>
+            <td data-label="Athlete Place">{race["finish"]}</td>
+            <td data-label="Race Comments">{race["comments"]}</td>
+          </tr>
+        '''
+        html_content += race_row
 
-   html_content += '''                   
-                </tbody>
-                  </table>
-                     </section>
+    html_content += '''
+        </tbody>
+      </table>
+    </section>
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <!-- Add images here -->
+    </section>
+  </main>
+  <footer>
+    <p>
+    Skyline High School<br>
+    <address>
+    2552 North Maple Road<br>
+    Ann Arbor, MI 48103<br><br>
+    <a href="https://sites.google.com/aaps.k12.mi.us/skylinecrosscountry2021/home">XC Skyline Page</a><br>
+    Follow us on Instagram <a href="https://www.instagram.com/a2skylinexc/"><i class="fa-brands fa-instagram" aria-label="Instagram"></i></a>
+    </address>
+    </p>
+  </footer>
+</body>
+</html>
+'''
 
-                        <h2>Race Results</h2>
-
-                        <section id="athlete-result-table">
-                           
-
-                           <table id="athlete-table">
-                              <thead>
-                                 <tr>
-                                    <th>Race</th>
-                                    <th>Athlete Time</th>
-                                    <th>Athlete Place</th>
-                                    <th>Race Comments</th>
-                                 </tr>
-                              </thead>
-
-                              <tbody>
-                  '''
-
-   # add each race as a row into the race table 
-   for race in data["race_results"]:
-      race_row = f'''
-                                 <tr class="result-row">
-                                    <td>
-                                       <a href="{race["url"]}">{race["meet"]}</a>
-                                    </td>
-                                    <td>{race["time"]}</td>
-                                    <td>{race["finish"]}</td>
-                                     <td>{race["comments"]}</td>
-                                 </tr>
-      '''
-      html_content += race_row
-
-   html_content += '''
-                              </tbody>
-
-                        </table>
-                     </section>
-                     <section id = "gallery">
-                     <h2>Gallery</h2>
-                      </section>
-                     </main>
-                     <footer>
-                     <p>
-                     Skyline High School<br>
-                     <address>
-                     2552 North Maple Road<br>
-                     Ann Arbor, MI 48103<br><br>
-
-                     <a href = "https://sites.google.com/aaps.k12.mi.us/skylinecrosscountry2021/home">XC Skyline Page</a><br>
-                    Follow us on Instagram <a href = "https://www.instagram.com/a2skylinexc/"><i class="fa-brands fa-instagram" aria-label="Instagram"></i>  </a> 
-
-
-                     </footer>
-               </body>
-         </html>
-   '''
-
-   with open(outfile, 'w') as output:
-      output.write(html_content)
+    with open(outfile, 'w') as output:
+        output.write(html_content)
 
 def gen_index_page(mens_athletes, womens_athletes):
     html_content = f'''<!DOCTYPE html>
