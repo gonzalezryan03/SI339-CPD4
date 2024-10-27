@@ -78,15 +78,13 @@ def gen_athlete_page(data, outfile):
 '''
 
     for sr in data["season_records"]:
-       sr_row = f'''
-      <tr>
-         <td data-label="Year">{sr["year"]}</td>
-         <td data-label="Season Record (SR)">
-            <span class="sr-value">{sr["sr"]}%</span>
-         </td>
-      </tr>
-   '''
-       html_content += sr_row
+      sr_row = f'''
+          <tr>
+            <td data-label="Year">{sr["year"]}</td>
+            <td data-label="Season Record (SR)">{sr["sr"]}</td>
+          </tr>
+      '''
+      html_content += sr_row
 
     html_content += '''
         </tbody>
