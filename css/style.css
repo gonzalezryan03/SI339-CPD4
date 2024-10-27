@@ -1,177 +1,53 @@
+:root {
+  --primary-color: #1a237e;
+  --secondary-color: #304ffe;
+  --text-color: #333;
+  --background-color: #fff;
+  --table-stripe: #f5f5f5;
+  --accent-color: #c5cae9;
+  --header-height: 60px;
+  --transition-speed: 0.3s;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #5c6bc0;
+    --secondary-color: #7986cb;
+    --text-color: #fff;
+    --background-color: #121212;
+    --table-stripe: #1e1e1e;
+    --accent-color: #3d5afe;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Base styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-color);
   line-height: 1.6;
-  background-color: #FFFFF0; /* Ivory Background */
-  color: #2F4F4F; /* Dark Slate Gray Text */
+  margin: 0;
+  padding: 0;
 }
 
-a {
-  color: #DAA520; /* Goldenrod */
-  text-decoration: none;
-}
-
-a:hover,
-a:focus {
-  text-decoration: underline;
-}
-
-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-nav {
-  background-color: #228B22; /* Forest Green */
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-
-nav ul li a {
-  color: #FFFFFF;
-  padding: 15px;
-  display: block;
-  transition: background-color 0.3s ease;
-}
-
-nav ul li a:hover,
-nav ul li a:focus {
-  background-color: #196619; /* Darker shade of Forest Green */
-}
-
-header {
-  text-align: center;
-  padding: 20px;
-}
-
-header h1 {
-  font-size: 1.5em;
-  color: #228B22; /* Forest Green */
-}
-
-header img {
-  border-radius: 50%;
-  margin-top: 10px;
-}
-
-main {
-  padding: 20px;
-}
-
-section {
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #228B22; /* Forest Green */
-}
-
-p {
-  margin-bottom: 15px;
-  overflow-wrap: break-word;
-}
-
-/* Responsive Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  display: block;
-}
-
-table thead {
-  display: none;
-}
-
-table, table tbody, table tr, table td {
-  display: block;
-  width: 100%;
-}
-
-table tr {
-  margin-bottom: 15px;
-  border-bottom: 1px solid #ddd;
-  background-color: #FFFFFF; /* White background for table rows */
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-table td {
-  text-align: left;
-  padding: 8px;
-  position: relative;
-}
-
-table td::before {
-  content: attr(data-label);
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-}
-
-/* Touch-Friendly Hover Effects */
-.result-row:active {
-  background-color: #f0e68c; /* Khaki */
-  transition: background-color 0.3s ease;
-}
-
-/* Button Styles */
-.button {
-  background-color: #DAA520; /* Goldenrod */
-  color: #FFFFFF;
-  padding: 12px 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-align: center;
-  display: inline-block;
-  transition: background-color 0.3s ease;
-}
-
-.button:hover,
-.button:focus {
-  background-color: #B8860B; /* Darker Goldenrod */
-}
-
-/* Footer Styles */
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #556B2F; /* Dark Olive Green */
-  color: #FFFFFF;
-}
-
-footer a {
-  color: #DAA520; /* Goldenrod */
-}
-
-address {
-  font-style: normal;
-}
-
-/* Accessibility: Focus Styles */
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid #DAA520; /* Goldenrod */
-  outline-offset: 2px;
-}
-
-/* Accessibility: Skip Link */
+/* Skip link */
 .skip-link {
   position: absolute;
   top: -40px;
   left: 0;
-  background: #FFFFFF;
-  color: #000000;
+  background: var(--primary-color);
+  color: white;
   padding: 8px;
   z-index: 100;
 }
@@ -180,87 +56,172 @@ textarea:focus {
   top: 0;
 }
 
-/* Accessibility: Prefers Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0s !important;
-    transition-duration: 0s !important;
-  }
+/* Navigation */
+nav {
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Accessibility: High Contrast Mode */
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #121212;
-    color: #FFFFFF;
-  }
-
-  nav {
-    background-color: #196619; /* Darker Forest Green */
-  }
-
-  nav ul li a:hover,
-  nav ul li a:focus {
-    background-color: #228B22;
-  }
-
-  header h1,
-  h2 {
-    color: #DAA520; /* Goldenrod */
-  }
-
-  table tr {
-    background-color: #1e1e1e;
-    border-bottom: 1px solid #333;
-  }
-
-  table td::before {
-    color: #cccccc;
-  }
-
-  footer {
-    background-color: #333333;
-  }
-}
-
-/* Responsive Typography */
-body {
-  font-size: clamp(1rem, 2.5vw, 1.2rem);
-}
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.2;
-}
-
-/* Ensure Buttons and Links are Accessible on Touch Devices */
-.button,
-nav ul li a {
-  touch-action: manipulation;
-}
-/* List Styles */
-ul, ol {
+nav ul {
   list-style: none;
-  padding-left: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-li {
-  margin-bottom: 10px;
+nav li {
+  margin: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-/* Utility Classes */
-.hidden {
-  display: none;
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 1rem;
+  display: block;
+  transition: background-color var(--transition-speed);
 }
 
-.visually-hidden {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  white-space: nowrap; /* added line */
+nav a:hover, nav a:focus {
+  background-color: var(--secondary-color);
 }
 
-/* Prevent Horizontal Overflow */
-body {
-  overflow-x: hidden;
+/* Header */
+header {
+  text-align: center;
+  padding: 1rem;
+  background: var(--accent-color);
+}
+
+header img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1rem auto;
+  border: 3px solid var(--primary-color);
+  transition: transform var(--transition-speed);
+}
+
+header img:hover {
+  transform: scale(1.05);
+}
+
+/* Main content */
+main {
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: var(--background-color);
+  overflow-x: auto;
+  display: block;
+}
+
+th, td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  position: sticky;
+  top: var(--header-height);
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-stripe);
+}
+
+/* Mobile-friendly table scrolling */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 1rem 0;
+}
+
+/* Athlete cards for mobile */
+.athlete-card {
+  background: var(--background-color);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  transition: transform var(--transition-speed);
+}
+
+.athlete-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Social media icons */
+.social-icon {
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  transition: transform var(--transition-speed);
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
+}
+
+/* Gallery section */
+#gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* Accessibility improvements */
+:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+/* High contrast mode */
+@media screen and (prefers-contrast: high) {
+  :root {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --text-color: #000;
+    --background-color: #fff;
+    --table-stripe: #eee;
+    --accent-color: #000;
+  }
 }
