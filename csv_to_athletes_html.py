@@ -170,13 +170,6 @@ def gen_index_page(mens_athletes, womens_athletes):
    <link rel="stylesheet" href="css/style.css">
    </head>
    <body>
-   <nav role="navigation" aria-label="Main Navigation">
-      <ul>
-         <li><a href="index.html">Home Page</a></li>
-         <li><a href="mens.html">Men's Team</a></li>
-         <li><a href="womens.html">Women's Team</a></li>
-      </ul>
-   </nav>
    <header>
       <h1>Skyline Cross Country Team</h1>
    </header>
