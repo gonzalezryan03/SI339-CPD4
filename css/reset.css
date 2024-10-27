@@ -51,12 +51,6 @@ button {
   cursor: pointer;
 }
 
-/* Reset form elements */
-input, textarea, select {
-  font: inherit;
-  margin: 0;
-}
-
 /* Remove default fieldset styles */
 fieldset {
   border: none;

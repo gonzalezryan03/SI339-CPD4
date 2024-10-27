@@ -78,13 +78,18 @@ def gen_athlete_page(data, outfile):
 '''
 
     for sr in data["season_records"]:
-        sr_row = f'''
-          <tr>
-            <td data-label="Year">{sr["year"]}</td>
-            <td data-label="Season Record (SR)">{sr["sr"]}</td>
-          </tr>
-        '''
-        html_content += sr_row
+       sr_row = f'''
+      <tr>
+         <td data-label="Year">{sr["year"]}</td>
+         <td data-label="Season Record (SR)">
+            <div class="progress-bar">
+            <div class="progress" style="width: {sr["sr"]}%"></div>
+            </div>
+            <span class="sr-value">{sr["sr"]}%</span>
+         </td>
+      </tr>
+   '''
+       html_content += sr_row
 
     html_content += '''
         </tbody>
@@ -107,15 +112,15 @@ def gen_athlete_page(data, outfile):
     # Add each race as a row into the race table 
     for race in data["race_results"]:
         race_row = f'''
-          <tr class="result-row">
-            <td data-label="Race">
-              <a href="{race["url"]}">{race["meet"]}</a>
-            </td>
-            <td data-label="Athlete Time">{race["time"]}</td>
-            <td data-label="Athlete Place">{race["finish"]}</td>
-            <td data-label="Race Comments">{race["comments"]}</td>
-          </tr>
-        '''
+      <tr class="result-row">
+         <td data-label="Race">
+            <a href="#" class="toggle-details">{race["meet"]}</a>
+         </td>
+         <td data-label="Athlete Time">{race["time"]}</td>
+         <td data-label="Athlete Place">{race["finish"]}</td>
+         <td data-label="Race Comments">{race["comments"]}</td>
+      </tr>
+      '''
         html_content += race_row
 
     html_content += '''

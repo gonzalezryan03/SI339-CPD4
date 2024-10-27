@@ -200,14 +200,6 @@ footer a {
   transform: scale(1.2);
 }
 
-/* Gallery section */
-#gallery {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  padding: 1rem 0;
-}
-
 /* Accessibility improvements */
 :focus {
   outline: 3px solid var(--accent-color);
@@ -223,5 +215,75 @@ footer a {
     --background-color: #fff;
     --table-stripe: #eee;
     --accent-color: #000;
+  }
+}
+
+/* Fade-In Animation for Sections */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Progress Bar Styles */
+.progress-bar {
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  overflow: hidden;
+  height: 20px;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.progress {
+  background-color: #228B22; /* Forest Green */
+  height: 100%;
+  width: 0%; /* Initial width set to 0 for animation */
+  transition: width 1s ease-in-out;
+}
+
+.sr-value {
+  font-size: 0.9em;
+  color: #2F4F4F;
+}
+
+/* Touch-Activated Details */
+.details-row {
+  display: none;
+}
+
+.details-row.active {
+  display: table-row;
+  animation: slideDown 0.3s ease-in-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility: Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  section,
+  .progress,
+  .details-row.active {
+    animation: none;
+  }
+
+  .progress {
+    transition: none;
   }
 }
