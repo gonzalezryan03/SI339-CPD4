@@ -121,26 +121,21 @@ def gen_athlete_page(data, outfile):
     html_content += '''
         </tbody>
       </table>
-    </section>
-    <section id="gallery">
-      <h2>Gallery</h2>
-      <!-- Add images here -->
-    </section>
-  </main>
-  <footer>
-    <p>
-    Skyline High School<br>
-    <address>
-    2552 North Maple Road<br>
-    Ann Arbor, MI 48103<br><br>
-    <a href="https://sites.google.com/aaps.k12.mi.us/skylinecrosscountry2021/home">XC Skyline Page</a><br>
-    Follow us on Instagram <a href="https://www.instagram.com/a2skylinexc/"><i class="fa-brands fa-instagram" aria-label="Instagram"></i></a>
-    </address>
-    </p>
-  </footer>
-</body>
-</html>
-'''
+      </main>
+      <footer>
+         <p>
+         Skyline High School<br>
+         <address>
+         2552 North Maple Road<br>
+         Ann Arbor, MI 48103<br><br>
+         <a href="https://sites.google.com/aaps.k12.mi.us/skylinecrosscountry2021/home">XC Skyline Page</a><br>
+         Follow us on Instagram <a href="https://www.instagram.com/a2skylinexc/"><i class="fa-brands fa-instagram" aria-label="Instagram"></i></a>
+         </address>
+         </p>
+      </footer>
+      </body>
+      </html>
+      '''
 
     with open(outfile, 'w') as output:
         output.write(html_content)
