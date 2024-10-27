@@ -82,9 +82,6 @@ def gen_athlete_page(data, outfile):
       <tr>
          <td data-label="Year">{sr["year"]}</td>
          <td data-label="Season Record (SR)">
-            <div class="progress-bar">
-            <div class="progress" style="width: {sr["sr"]}%"></div>
-            </div>
             <span class="sr-value">{sr["sr"]}%</span>
          </td>
       </tr>

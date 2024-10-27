@@ -232,28 +232,6 @@ section {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-/* Progress Bar Styles */
-.progress-bar {
-  background-color: #f0f0f0;
-  border-radius: 5px;
-  overflow: hidden;
-  height: 20px;
-  width: 100%;
-  margin-bottom: 5px;
-}
-
-.progress {
-  background-color: #228B22; /* Forest Green */
-  height: 100%;
-  width: 0%; /* Initial width set to 0 for animation */
-  transition: width 1s ease-in-out;
-}
-
-.sr-value {
-  font-size: 0.9em;
-  color: #2F4F4F;
-}
-
 /* Touch-Activated Details */
 .details-row {
   display: none;
