@@ -253,3 +253,105 @@ section {
     transition: none;
   }
 }
+
+
+/* ==========================
+   Tablet Styles
+   ========================== */
+
+   @media (min-width: 768px) {
+    /* Navigation */
+    #nav-toggle {
+      display: none;
+    }
+  
+    .nav-menu {
+      display: flex;
+      justify-content: center;
+    }
+  
+    .nav-menu li {
+      margin: 0 10px;
+    }
+  
+    .nav-menu li a {
+      padding: 15px 20px;
+    }
+  
+    /* Main Content */
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+  
+    section {
+      flex: 1 1 45%;
+      margin: 10px;
+    }
+  
+    /* Adjust font sizes */
+    body {
+      font-size: 1rem;
+    }
+  }
+  
+  /* ==========================
+     Desktop Styles
+     ========================== */
+  
+  @media (min-width: 1024px) {
+    /* Main Content */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+  
+    section {
+      flex: 1 1 30%;
+    }
+  
+    /* Adjust font sizes */
+    body {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* ==========================
+     Additional Styles
+     ========================== */
+  
+  /* Ensure Buttons and Links are Accessible on Touch Devices */
+  .btn,
+  .nav-menu li a {
+    touch-action: manipulation;
+  }
+  
+  /* Utility Classes */
+  .hidden {
+    display: none;
+  }
+  
+  .visually-hidden {
+    position: absolute !important;
+    height: 1px; width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+  }
+  
+  /* Prevent Horizontal Overflow */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Smooth Scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
