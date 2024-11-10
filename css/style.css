@@ -124,7 +124,6 @@ table {
   margin: 1rem 0;
   background: var(--background-color);
   overflow-x: auto;
-  display: block;
 }
 
 th, td {
@@ -137,7 +136,7 @@ th {
   background-color: var(--primary-color);
   color: white;
   position: sticky;
-  top: var(--header-height);
+  top: 0;
 }
 
 tr:nth-child(even) {
