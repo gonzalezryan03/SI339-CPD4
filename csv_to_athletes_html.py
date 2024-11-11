@@ -92,7 +92,6 @@ def gen_athlete_page(data, outfile):
     </section>
     <section id="athlete-result-table">
       <h2>Race Results</h2>
-      <div class="content-collapsible">
         <table id="athlete-table">
           <thead>
             <tr>
@@ -122,7 +121,6 @@ def gen_athlete_page(data, outfile):
     html_content += '''
         </tbody>
       </table>
-      </div>
       </section>
       </main>
       <footer>
