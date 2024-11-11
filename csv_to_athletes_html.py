@@ -90,20 +90,20 @@ def gen_athlete_page(data, outfile):
         </tbody>
       </table>
     </section>
-    <div class=content-collapsible">
     <section id="athlete-result-table">
       <h2>Race Results</h2>
-      <table id="athlete-table">
-        <thead>
-          <tr>
-            <th scope="col">Race</th>
-            <th scope="col">Athlete Time</th>
-            <th scope="col">Athlete Place</th>
-            <th scope="col">Race Comments</th>
-          </tr>
-        </thead>
-        <tbody>
-'''
+      <div class="content-collapsible">
+        <table id="athlete-table">
+          <thead>
+            <tr>
+              <th scope="col">Race</th>
+              <th scope="col">Athlete Time</th>
+              <th scope="col">Athlete Place</th>
+              <th scope="col">Race Comments</th>
+            </tr>
+          </thead>
+          <tbody>
+  '''
 
     # Add each race as a row into the race table 
     for race in data["race_results"]:
@@ -122,6 +122,8 @@ def gen_athlete_page(data, outfile):
     html_content += '''
         </tbody>
       </table>
+      </div>
+      </section>
       </main>
       <footer>
          <p>
