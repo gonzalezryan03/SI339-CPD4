@@ -133,7 +133,7 @@ def gen_athlete_page(data, outfile):
          </address>
          </p>
       </footer>
-      <script src="../script.js" defer></script>
+      <script src="../js/script.js" defer></script>
       </body>
       </html>
       '''
@@ -194,7 +194,7 @@ def gen_index_page(mens_athletes, womens_athletes):
     </address>
     </p>
   </footer>
-  <script src="../script.js" defer></script>
+  <script src="js/script.js" defer></script>
 </body>
 </html>
 '''
